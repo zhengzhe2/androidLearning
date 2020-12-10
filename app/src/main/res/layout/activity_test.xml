@@ -5,33 +5,28 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/button_1"
+        android:id="@+id/button_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="使用显示Intent" />
-    <Button
-        android:id="@+id/button_3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="使用隐式Intent" />
+        android:text="Button 2" />
 
     <Button
-        android:id="@+id/button_4"
+        android:id="@+id/test_singletop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="打开百度网页" />
+        android:text="test singletop" />
 
     <Button
-        android:id="@+id/start_normal_activity"
+        android:id="@+id/test_singletask"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Start NormalActivity" />
+        android:text="test singletask" />
 
     <Button
-        android:id="@+id/start_dialog_activity"
+        android:id="@+id/test_singleinstance"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Start DialogActivity" />
+        android:text="test singleinstance" />
 
 
 </LinearLayout>
