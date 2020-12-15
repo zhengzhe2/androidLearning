@@ -10,7 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-public class NormalActivity extends AppCompatActivity {
+public class NormalActivity extends BasicActivity {
     private static final String TAG = "AL_NormalActivity";
 
     @Override

@@ -1,22 +1,26 @@
 package com.example.androidlearning;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.ActionBar;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AbsoluteLayout;
 import android.widget.Button;
 import android.widget.Toast;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BasicActivity {
     private static final String TAG = "AL_MainActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,10 +28,28 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate");
         Log.d(TAG, "task id is " + getTaskId());
         setContentView(R.layout.activity_main);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.hide();
+        }
+
         if (savedInstanceState != null) {
             String tempData = savedInstanceState.getString("data_key");
             Log.d(TAG, "onCreate tempData:" + tempData);
         }
+
+        ViewGroup rootview = findViewById(android.R.id.content);
+        Button button = new Button(this);
+        button.setVisibility(View.GONE);
+        button.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                Log.d(TAG, "this onTouch action:" + event.getAction());
+                return false;
+            }
+        });      
+        rootview.addView(button, new AbsoluteLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, 0, 0));
+
         Button button1 = (Button)findViewById(R.id.button_1);
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,6 +102,37 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button startControlActivity = (Button)findViewById(R.id.start_control_activity);
+        startControlActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ControlActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button startListViewActivity = (Button)findViewById(R.id.start_listview_activity);
+        startListViewActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ListViewTest.class);
+                startActivity(intent);
+            }
+        });
+
+        Button startButtonActivity = (Button)findViewById(R.id.start_button_activity);
+        Log.d(TAG, "isEnabled :" + startButtonActivity.isEnabled());
+        startButtonActivity.setEnabled(true);
+        startButtonActivity.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                Log.d(TAG, "onTouch action:" + event.getAction());
+                return false;
+            }
+        });
+        
+
+        
     }
 
     @Override
@@ -148,4 +201,18 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "onSaveInstanceState tempData:" + tempData);
     }
 
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        Log.d(TAG, "onTouchEvent action:" + event.getAction());
+        return super.onTouchEvent(event);
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        Log.d(TAG, "dispatchTouchEvent action:" + ev.getAction());
+        if (ev.getAction() == MotionEvent.ACTION_UP) {
+            ev.setAction(MotionEvent.ACTION_CANCEL);
+        }
+        return super.dispatchTouchEvent(ev);
+    }
 }

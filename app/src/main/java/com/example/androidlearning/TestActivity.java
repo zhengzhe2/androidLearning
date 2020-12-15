@@ -5,11 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Process;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-public class TestActivity extends AppCompatActivity {
+public class TestActivity extends BasicActivity {
     private static final String TAG = "AL_TestActivity";
 
     @Override
@@ -60,6 +61,15 @@ public class TestActivity extends AppCompatActivity {
                 // 测试singleinstance模式，测试需修改launchMode
                 Intent intent1 = new Intent(TestActivity.this, NormalActivity.class);
                 startActivity(intent1);
+            }
+        });
+
+        Button testFinishAll = (Button)findViewById(R.id.test_finshall);
+        testFinishAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivityCollector.finishAll();
+                android.os.Process.killProcess(Process.myPid());
             }
         });
     }

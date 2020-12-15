@@ -4,6 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.example.androidlearning.TitleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <Button
         android:id="@+id/button_1"
         android:layout_width="match_parent"
@@ -32,6 +36,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Start DialogActivity" />
+    <Button
+        android:id="@+id/start_control_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Start ControlActivity" />
 
+    <Button
+        android:id="@+id/start_listview_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="test listview" />
+
+    <Button
+        android:id="@+id/start_button_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="test button" />
 
 </LinearLayout>
